@@ -105,7 +105,8 @@ class IndicadoresFinancierosChilenos(RequestHandler):
     # Metodos para solicitar datos a la API
     # ----------------------------------------
         
-    def get_dolares(self, codigo:str='Dolares', **query_params):        
+    def get_dolares(self, **query_params):
+        codigo = 'Dolares'
         query_params_ = self.__validador_fechas(query_params)     
         self.endpoint = self.__endpoint_builder(
             "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/periodo/{}/{}/dias_i/{}/{}/{}/dias_f/{}",
@@ -113,7 +114,8 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
     
-    def get_euros(self, codigo:str='Euros', **query_params):
+    def get_euros(self, **query_params):
+        codigo = 'Euros'
         query_params_ = self.__validador_fechas(query_params)
         self.endpoint = self.__endpoint_builder(
             "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro/periodo/{}/{}/dias_i/{}/{}/{}/dias_f/{}",
@@ -121,7 +123,8 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
     
-    def get_ipc(self, codigo:str='IPCs', **query_params):
+    def get_ipc(self, **query_params):
+        codigo = 'IPCs'
         query_params_ = self.__validador_fechas(query_params, freq='M')
         self.endpoint = self.__endpoint_builder(
             "https://api.cmfchile.cl/api-sbifv3/recursos_api/ipc/periodo/{}/{}/{}/{}",
@@ -130,7 +133,8 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
     
-    def get_tip(self, codigo:str='TIPs', **query_params):
+    def get_tip(self, **query_params):
+        codigo = 'TIPs'
         query_params_ = self.__validador_fechas(query_params, freq='M')
         self.endpoint = self.__endpoint_builder(
             "https://api.cmfchile.cl/api-sbifv3/recursos_api/tip/periodo/{}/{}/{}/{}",
@@ -139,7 +143,7 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
     
-    def get_codigos_tip(self):
+    def get_codigos(self):
         codigos_tip = {
             '1':'Operaciones no reajustables en moneda nacional',
             '2':'Operaciones no reajustables en moneda nacional de menos de 90 días - de menos de 90 días',
@@ -185,3 +189,13 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             }
         
         return codigos_tip
+    
+    def get_tmc(self, **query_params):
+        codigo = 'TMCs'
+        query_params_ = self.__validador_fechas(query_params, freq='M')
+        self.endpoint = self.__endpoint_builder(
+            "https://api.cmfchile.cl/api-sbifv3/recursos_api/tmc/periodo/{}/{}/{}/{}",
+            query_params_,
+            freq='M'
+            )
+        return super().handle_request(self.endpoint, query_params_, codigo)
