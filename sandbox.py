@@ -19,3 +19,4 @@ cliente = CmfBancos(api_key_)
 # Solo con to_ -> si el to_ es menor a hoy, se ocupa el to_ como "hoy" y se le resta un año
 # Ambos -> El from_ debe ser menor que el to_ 
 resp = cliente.get_dolares(to_='2012/09/18', from_='2005/10/24')
+resp = cliente.get_euros(to_='2005/05/17')

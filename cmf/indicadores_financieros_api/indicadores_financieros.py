@@ -59,11 +59,18 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             dates_dict_['to_'][-2:]
             )
         
-    def get_dolares(self, codigo:str='Dolares', **query_params):
-        
+    def get_dolares(self, codigo:str='Dolares', **query_params):        
         query_params_ = self.__validador_fechas(query_params)     
         self.endpoint = self.__endpoint_builder(
             "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/periodo/{}/{}/dias_i/{}/{}/{}/dias_f/{}",
             query_params_
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
+    
+    def get_euros(self, codigo:str='Euros', **query_params):
+        query_params_ = self.__validador_fechas(query_params)
+        self.endpoint = self.__endpoint_builder(
+            "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro/periodo/{}/{}/dias_i/{}/{}/{}/dias_f/{}",
+            query_params_
+            )
+        return super().handle_request(self.endpoint, query_params, codigo)
