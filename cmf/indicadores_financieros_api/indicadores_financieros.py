@@ -199,3 +199,13 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             freq='M'
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
+    
+    def get_uf(self, **query_params):
+        codigo = 'UFs'
+        query_params_ = self.__validador_fechas(query_params, freq='M')
+        self.endpoint = self.__endpoint_builder(
+            "https://api.cmfchile.cl/api-sbifv3/recursos_api/uf/periodo/{}/{}/{}/{}",
+            query_params_,
+            freq='M'
+            )
+        return super().handle_request(self.endpoint, query_params_, codigo)
