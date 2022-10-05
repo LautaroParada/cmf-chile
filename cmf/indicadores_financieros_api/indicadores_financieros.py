@@ -209,3 +209,13 @@ class IndicadoresFinancierosChilenos(RequestHandler):
             freq='M'
             )
         return super().handle_request(self.endpoint, query_params_, codigo)
+    
+    def get_utm(self, **query_params):
+        codigo = 'UTMs'
+        query_params_ = self.__validador_fechas(query_params, freq='M')
+        self.endpoint = self.__endpoint_builder(
+            "https://api.cmfchile.cl/api-sbifv3/recursos_api/utm/periodo/{}/{}/{}/{}",
+            query_params_,
+            freq='M'
+            )
+        return super().handle_request(self.endpoint, query_params_, codigo)
