@@ -13,6 +13,7 @@ class ReportesBancariosChilenos(RequestHandler):
         # URL raices de cada endpoint
         self.URL_CALL = None # ruta final para solicitar datos a la API
         self.ROOT_ADECUACION = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/adecuacion'
+        self.ROOT_FICHAS = 'https://api.cmfchile.cl/api-sbifv3/recursos_api'
         
         
     # ----------------------------------------
@@ -67,5 +68,17 @@ class ReportesBancariosChilenos(RequestHandler):
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/anhos/{query_params['year']}/meses/{query_params['month']}/instituciones/{query_params['instituciones']}/componentes"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    # ----------------------------------------
+    # Fichas Bancarias
+    # ----------------------------------------
+    
+    def fb_perfil_institucion(self, **query_params):
+        codigo = 'Perfiles'
+        self.__endpoint_builder(
+            self.ROOT_FICHAS, 
+            f"/perfil/instituciones/{query_params['instituciones']}/{query_params['year']}/{query_params['month']}"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)

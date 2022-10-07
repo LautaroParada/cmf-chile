@@ -35,3 +35,6 @@ resp = cliente.ac_patrimonio_efectivo(cantidad='30', instituciones='001')
 resp = cliente.ac_riesgo_credito(cantidad='30', instituciones='001')
 resp = cliente.ac_capital_activos(cantidad='30', instituciones='001')
 resp = cliente.ac_componentes_todos(year='2020', month='01', instituciones='001')
+
+# Fichas Bancarias
+resp = cliente.fb_perfil_institucion(year='2022', month='10', instituciones='001')
