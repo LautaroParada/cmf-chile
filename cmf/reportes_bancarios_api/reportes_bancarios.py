@@ -53,3 +53,11 @@ class ReportesBancariosChilenos(RequestHandler):
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/irs"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    def ac_capital_activos(self, **query_params):
+        codigo = 'AdecuacionDeCapital'
+        self.__endpoint_builder(
+            self.ROOT_ADECUACION, 
+            f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/ire"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
