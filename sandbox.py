@@ -39,3 +39,4 @@ resp = cliente.ac_componentes_todos(year='2020', month='01', instituciones='001'
 # Fichas Bancarias
 resp = cliente.fb_perfil_institucion(year='2022', month='10', instituciones='001')
 resp = cliente.fb_accionistas_institucion(year='2022', month='10', instituciones='001')
+resp = cliente.fb_ejecutivos_institucion(year='2022', month='10', instituciones='001')
