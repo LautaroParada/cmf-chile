@@ -62,10 +62,10 @@ class ReportesBancariosChilenos(RequestHandler):
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
-    def ac_limite_patrimonio(self, **query_params):
+    def ac_componentes_todos(self, **query_params):
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
-            f"/anhos/{query_params['year']}/meses/{query_params['month']}/instituciones/{query_params['instituciones']}/componentes/limites"
+            f"/anhos/{query_params['year']}/meses/{query_params['month']}/instituciones/{query_params['instituciones']}/componentes"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
