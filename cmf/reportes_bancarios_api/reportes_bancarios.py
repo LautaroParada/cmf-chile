@@ -82,3 +82,11 @@ class ReportesBancariosChilenos(RequestHandler):
             f"/perfil/instituciones/{query_params['instituciones']}/{query_params['year']}/{query_params['month']}"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    def fb_accionistas_institucion(self, **query_params):
+        codigo = 'Accionistas'
+        self.__endpoint_builder(
+            self.ROOT_FICHAS, 
+            f"/accionistas/instituciones/{query_params['instituciones']}/anhos/{query_params['year']}/meses/{query_params['month']}/ficha"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
