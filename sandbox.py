@@ -29,7 +29,9 @@ resp = cliente.get_utm()
 
 #%% Testeando los reportes bancarios
 
+# Adecuacion de capital
 resp = cliente.ac_capital_basico(cantidad='30', instituciones='001')
 resp = cliente.ac_patrimonio_efectivo(cantidad='30', instituciones='001')
 resp = cliente.ac_riesgo_credito(cantidad='30', instituciones='001')
 resp = cliente.ac_capital_activos(cantidad='30', instituciones='001')
+resp = cliente.ac_limite_patrimonio(year='2020', month='01', instituciones='001')
