@@ -45,3 +45,11 @@ class ReportesBancariosChilenos(RequestHandler):
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/patefe"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    def ac_riesgo_credito(self, **query_params):
+        codigo = 'AdecuacionDeCapital'
+        self.__endpoint_builder(
+            self.ROOT_ADECUACION, 
+            f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/irs"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
