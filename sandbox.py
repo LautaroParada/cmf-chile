@@ -26,3 +26,7 @@ resp = cliente.get_codigos()
 resp = cliente.get_tmc(to_='2000/01', from_='1998/01')
 resp = cliente.get_uf()
 resp = cliente.get_utm()
+
+#%% Testeando los reportes bancarios
+
+resp = cliente.ac_capital_basico(cantidad='30', instituciones='001')

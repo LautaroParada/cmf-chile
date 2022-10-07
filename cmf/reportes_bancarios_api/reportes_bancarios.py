@@ -19,7 +19,21 @@ class ReportesBancariosChilenos(RequestHandler):
     # Metodos de ayuda para el manejo de casos
     # ----------------------------------------
     
-    def __endpoint_builder(self, root, endpoint):
-        self.URL_CALL = f"{root}/{endpoint}"
+    def __endpoint_builder(self, root:str, endpoint:str):
+        self.URL_CALL = f"{root}{endpoint}"
         
-        
+    # ----------------------------------------
+    # Metodos para solicitar datos a la API
+    # ----------------------------------------
+    
+    # ----------------------------------------
+    # Adecuacion de Capital
+    # ----------------------------------------
+    
+    def ac_capital_basico(self, **query_params):
+        codigo = 'AdecuacionDeCapital'
+        self.__endpoint_builder(
+            self.ROOT_ADECUACION, 
+            f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/capbas"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
