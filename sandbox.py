@@ -29,6 +29,9 @@ resp = cliente.get_utm()
 
 #%% Testeando los reportes bancarios
 
+# Bancos Disponibles para el mercado chileno
+resp = cliente.instituciones_bancarias()
+
 # Adecuacion de capital
 resp = cliente.ac_capital_basico(cantidad='30', instituciones='001')
 resp = cliente.ac_patrimonio_efectivo(cantidad='30', instituciones='001')

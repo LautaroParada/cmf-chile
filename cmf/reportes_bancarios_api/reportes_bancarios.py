@@ -23,6 +23,65 @@ class ReportesBancariosChilenos(RequestHandler):
     def __endpoint_builder(self, root:str, endpoint:str):
         self.URL_CALL = f"{root}{endpoint}"
         
+    def instituciones_bancarias(self):
+        bancos_chilenos = {
+            'Nombre':[
+                'BANCO DE CHILE',
+                'BANCO INTERNACIONAL',
+                'SCOTIABANK CHILE',
+                'BANCO DE CREDITO E INVERSIONES',
+                'BANCO BICE',
+                'HSBC BANK',
+                'BANCO SANTANDER-CHILE',
+                'ITAÚ CORPBANCA',
+                'BANCO SECURITY',
+                'BANCO FALABELLA',
+                'BANCO RIPLEY',
+                'BANCO CONSORCIO',
+                'SCOTIABANK AZUL',
+                'BANCO BTG PACTUAL CHILE',
+                # Bancos Extranjeros
+                'BANCO DO BRASIL S.A.',
+                'JP MORGAN CHASE BANK, N. A.',
+                'BANCO DE LA NACION ARGENTINA',
+                'MUFG Bank, Ltd.',
+                'CHINA CONSTRUCTION BANK, AGENCIA EN CHILE',
+                'BANK OF CHINA, AGENCIA EN CHILE',
+                # Bancos Estatales
+                'BANCO DEL ESTADO DE CHILE'
+                ],
+            'CodigoSBIF': [
+                '001','009','014','016','028','031','037','039','049','051',
+                '053','055','504','059',
+                # Bancos extranjeros
+                '017','041','043','045','060','061',
+                # Bancos Estatales
+                '012'                
+                ],
+            'Tipo':[
+                'ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH',
+                'ECH','ECH','ECH','ECH',
+                # Bancos Extranjeros
+                'SBE','SBE','SBE','SBE','SBE','SBE',
+                # Bancos Estatales
+                'BET'
+                ],
+            'OperacionConjunta':[
+                'Banco Edwards, Citi, Atlas y CrediChile',
+                '',
+                'BancoDesarrollo','TBanc y Banco Nova','','','Banefe',
+                'Desde el 1 de abril de 2016 se fusiona el Banco Corpbanca en Itaú Corpbanca.',
+                '','','','','','',
+                # Bancos Extranjeros
+                '','','','Hasta el 1 de Abril de 2018 operó con el nombre The Bank of Tokyo-Mitsubishi UFJ, Ltd.',
+                '','',
+                # Bancos Estatales
+                ''
+                ]
+            }
+        
+        return bancos_chilenos
+        
     # ----------------------------------------
     # Metodos para solicitar datos a la API
     # ----------------------------------------
@@ -71,6 +130,10 @@ class ReportesBancariosChilenos(RequestHandler):
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
+    # ----------------------------------------
+    # Balance Mensual de Bancos
+    # ----------------------------------------
+
     # ----------------------------------------
     # Fichas Bancarias
     # ----------------------------------------
