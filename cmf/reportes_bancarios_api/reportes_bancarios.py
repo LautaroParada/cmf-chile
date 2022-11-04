@@ -159,6 +159,14 @@ class ReportesBancariosChilenos(RequestHandler):
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
+    def bs_historico_cuenta_institucion(self, **query_params):
+        codigo = 'CodigosBalances'
+        self.__endpoint_builder(
+            self.BALANCES_BANCOS, 
+            f"/{query_params['periodo']}/{query_params['month']}/cuentas/{query_params['codigo_cuenta']}/instituciones/{query_params['instituciones']}"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
+    
     # ----------------------------------------
     # Fichas Bancarias
     # ----------------------------------------
