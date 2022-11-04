@@ -139,14 +139,24 @@ class ReportesBancariosChilenos(RequestHandler):
         codigo = 'CodigosBalances'
         self.__endpoint_builder(
             self.BALANCES_BANCOS,
-            f"/{query_params['year']}/instituciones/{query_params['instituciones']}")
+            f"/{query_params['year']}/instituciones/{query_params['instituciones']}"
+            )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def bs_lista_cuentas(self, **query_params):
         codigo = 'DescripcionesCodigosContables'
         self.__endpoint_builder(
             self.BALANCES_BANCOS, 
-            f"/{query_params['year']}/{query_params['month']}/cuentas")
+            f"/{query_params['year']}/{query_params['month']}/cuentas"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    def bs_cuentas_instituciones(self, **query_params):
+        codigo = 'CodigosBalances'
+        self.__endpoint_builder(
+            self.BALANCES_BANCOS,
+            f"/{query_params['year']}/cuentas/{query_params['codigo_cuenta']}"
+            )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     # ----------------------------------------
