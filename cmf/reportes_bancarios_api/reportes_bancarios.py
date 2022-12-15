@@ -187,6 +187,14 @@ class ReportesBancariosChilenos(RequestHandler):
             f"/{query_params['year']}/{query_params['month']}/cuentas"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+    
+    def er_cuenta_instituciones(self, **query_params):
+        codigo = 'CodigosEstadosDeResultado'
+        self.__endpoint_builder(
+            self.ROOT_ESTADO_RESULTADOS, 
+            f"/{query_params['year']}/{query_params['month']}/cuentas/{query_params['codigo_cuenta']}"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
 
     # ----------------------------------------
     # Fichas Bancarias
