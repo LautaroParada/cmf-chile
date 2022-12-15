@@ -15,6 +15,7 @@ class ReportesBancariosChilenos(RequestHandler):
         self.ROOT_ADECUACION = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/adecuacion'
         self.BALANCES_BANCOS = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/balances'
         self.ROOT_FICHAS = 'https://api.cmfchile.cl/api-sbifv3/recursos_api'
+        self.ROOT_ESTADO_RESULTADOS = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/resultados'
         
         
     # ----------------------------------------
@@ -167,6 +168,18 @@ class ReportesBancariosChilenos(RequestHandler):
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
+    # ----------------------------------------
+    # Estado de Resultado de Bancos
+    # ----------------------------------------
+    
+    def er_institucion(self, **query_params):
+        codigo = 'CodigosEstadosDeResultado'
+        self.__endpoint_builder(
+            self.ROOT_ESTADO_RESULTADOS, 
+            f"/{query_params['year']}/instituciones/{query_params['instituciones']}"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
+
     # ----------------------------------------
     # Fichas Bancarias
     # ----------------------------------------

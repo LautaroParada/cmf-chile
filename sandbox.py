@@ -40,12 +40,15 @@ resp = cliente.ac_capital_activos(cantidad='30', instituciones='001')
 resp = cliente.ac_componentes_todos(year='2020', month='01', instituciones='001')
 
 # Balances bancarios
-resp = cliente.bs_institucion(instituciones='001', year='2022')
+resp = cliente.bs_institucion(instituciones='001', year='2022') # Timeout error
 resp = cliente.bs_lista_cuentas(year='2022', month='09') # funciona con 1 o 2 meses de retraso
 resp = cliente.bs_cuentas_instituciones(year='2022', codigo_cuenta='246000304')
 resp = cliente.bs_historico_cuenta_institucion(periodo='periodo3', month='06', 
                                               codigo_cuenta='246000304',
                                               instituciones='001')
+
+# Estado de Resultados
+resp = cliente.er_institucion(instituciones='001', year='2022') # Timeout error
 
 # Fichas Bancarias
 resp = cliente.fb_perfil_institucion(year='2022', month='10', instituciones='001')

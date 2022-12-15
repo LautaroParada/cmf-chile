@@ -9,7 +9,7 @@ from cmf.indicadores_financieros_api import IndicadoresFinancierosChilenos
 from cmf.reportes_bancarios_api import ReportesBancariosChilenos
 
 class CmfBancos(IndicadoresFinancierosChilenos, ReportesBancariosChilenos):
-    def __init__(self, api_key:str, timeout:int=300):
+    def __init__(self, api_key:str, timeout:int=1000):
         # heredar las clases importadas
         IndicadoresFinancierosChilenos.__init__(self, api_key, timeout)
         ReportesBancariosChilenos.__init__(self, api_key, timeout)
