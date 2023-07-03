@@ -32,7 +32,7 @@ resp = cliente.get_utm()
 # Bancos Disponibles para el mercado chileno
 resp = cliente.instituciones_bancarias()
 
-# Adecuacion de capital
+# Adecuacion de capital - EL ULTIMO MES DISPONIBLE ES 2020/11
 resp = cliente.ac_capital_basico(cantidad='12', instituciones='001')
 resp = cliente.ac_patrimonio_efectivo(cantidad='30', instituciones='001')
 resp = cliente.ac_riesgo_credito(cantidad='30', instituciones='001')
