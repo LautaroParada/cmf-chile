@@ -90,6 +90,9 @@ class ReportesBancariosChilenos(RequestHandler):
     # ----------------------------------------
     
     def ac_capital_basico(self, **query_params):
+        """
+        Capital básico para múltiples períodos
+        """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
@@ -98,6 +101,9 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_patrimonio_efectivo(self, **query_params):
+        """
+        Patrimonio Efectivo para múltiples períodos
+        """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
@@ -106,6 +112,9 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_riesgo_credito(self, **query_params):
+        """
+        Activos Ponderados por Riesgo de Crédito (IRS) para múltiples períodos
+        """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
@@ -114,6 +123,9 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_capital_activos(self, **query_params):
+        """
+        Capital Básico / Activos Totales (IRE) para múltiples períodos
+        """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
@@ -122,6 +134,10 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_componentes_todos(self, **query_params):
+        """
+        Entrega las cifras de todos los componentes de la Adecuación de 
+        Capital para la institución especificada.
+        """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 

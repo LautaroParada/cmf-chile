@@ -33,11 +33,11 @@ resp = cliente.get_utm()
 resp = cliente.instituciones_bancarias()
 
 # Adecuacion de capital
-resp = cliente.ac_capital_basico(cantidad='30', instituciones='001')
+resp = cliente.ac_capital_basico(cantidad='12', instituciones='001')
 resp = cliente.ac_patrimonio_efectivo(cantidad='30', instituciones='001')
 resp = cliente.ac_riesgo_credito(cantidad='30', instituciones='001')
 resp = cliente.ac_capital_activos(cantidad='30', instituciones='001')
-resp = cliente.ac_componentes_todos(year='2020', month='01', instituciones='001')
+resp = cliente.ac_componentes_todos(year='2020', month='11', instituciones='001')
 
 # Balances bancarios
 resp = cliente.bs_institucion(instituciones='001', year='2022') # Timeout error
