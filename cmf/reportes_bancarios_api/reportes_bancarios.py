@@ -6,6 +6,7 @@ Created on Fri Oct  7 08:26:36 2022
 """
 
 from cmf.request_handler_class import RequestHandler
+from datetime import datetime, timedelta
 
 class ReportesBancariosChilenos(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
@@ -24,69 +25,41 @@ class ReportesBancariosChilenos(RequestHandler):
     
     def __endpoint_builder(self, root:str, endpoint:str):
         self.URL_CALL = f"{root}{endpoint}"
-        
-    def instituciones_bancarias(self):
-        bancos_chilenos = {
-            'Nombre':[
-                'BANCO DE CHILE',
-                'BANCO INTERNACIONAL',
-                'SCOTIABANK CHILE',
-                'BANCO DE CREDITO E INVERSIONES',
-                'BANCO BICE',
-                'HSBC BANK',
-                'BANCO SANTANDER-CHILE',
-                'ITAÚ CORPBANCA',
-                'BANCO SECURITY',
-                'BANCO FALABELLA',
-                'BANCO RIPLEY',
-                'BANCO CONSORCIO',
-                'SCOTIABANK AZUL',
-                'BANCO BTG PACTUAL CHILE',
-                # Bancos Extranjeros
-                'BANCO DO BRASIL S.A.',
-                'JP MORGAN CHASE BANK, N. A.',
-                'BANCO DE LA NACION ARGENTINA',
-                'MUFG Bank, Ltd.',
-                'CHINA CONSTRUCTION BANK, AGENCIA EN CHILE',
-                'BANK OF CHINA, AGENCIA EN CHILE',
-                # Bancos Estatales
-                'BANCO DEL ESTADO DE CHILE'
-                ],
-            'CodigoSBIF': [
-                '001','009','014','016','028','031','037','039','049','051',
-                '053','055','504','059',
-                # Bancos extranjeros
-                '017','041','043','045','060','061',
-                # Bancos Estatales
-                '012'                
-                ],
-            'Tipo':[
-                'ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH','ECH',
-                'ECH','ECH','ECH','ECH',
-                # Bancos Extranjeros
-                'SBE','SBE','SBE','SBE','SBE','SBE',
-                # Bancos Estatales
-                'BET'
-                ],
-            'OperacionConjunta':[
-                'Banco Edwards, Citi, Atlas y CrediChile',
-                '',
-                'BancoDesarrollo','TBanc y Banco Nova','','','Banefe',
-                'Desde el 1 de abril de 2016 se fusiona el Banco Corpbanca en Itaú Corpbanca.',
-                '','','','','','',
-                # Bancos Extranjeros
-                '','','','Hasta el 1 de Abril de 2018 operó con el nombre The Bank of Tokyo-Mitsubishi UFJ, Ltd.',
-                '','',
-                # Bancos Estatales
-                ''
-                ]
-            }
-        
-        return bancos_chilenos
-        
+
+    def __obtener_mes_y_anio_hace_tres_meses(self):
+        """
+        Obtiene el mes y el año de hace tres meses atrás con base en la fecha actual.
+    
+        Returns:
+            str: El mes en formato 0X, donde X es un número de 1 a 9.
+            int: El año de hace tres meses atrás.
+        """
+        # Obtener la fecha actual
+        fecha_actual = datetime.now()
+    
+        # Restar 3 meses a la fecha actual
+        fecha_hace_tres_meses = fecha_actual - timedelta(days=3 * 30)
+    
+        # Obtener el mes y el año de hace tres meses
+        mes_hace_tres_meses = fecha_hace_tres_meses.strftime("%m")
+        anio_hace_tres_meses = fecha_hace_tres_meses.year
+    
+        return mes_hace_tres_meses, anio_hace_tres_meses
+
+    
     # ----------------------------------------
     # Metodos para solicitar datos a la API
     # ----------------------------------------
+    
+    def instituciones_bancarias(self, **query_params):
+        mes_ref, anio_ref = self.__obtener_mes_y_anio_hace_tres_meses()
+        
+        codigo = 'DescripcionesCodigosDeInstituciones'
+        self.__endpoint_builder(
+            self.BALANCES_BANCOS,
+            f"/{anio_ref}/{mes_ref}/instituciones"
+            )
+        return super().handle_request(self.URL_CALL, query_params, codigo)
     
     # ----------------------------------------
     # Adecuacion de Capital

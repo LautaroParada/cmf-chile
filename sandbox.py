@@ -49,6 +49,8 @@ resp = cliente.bs_historico_cuenta_institucion(periodo='periodo3', month='06',
 
 # Estado de Resultados
 resp = cliente.er_institucion(instituciones='001', year='2022') # Timeout error
+resp = cliente.er_lista_cuentas(year='2022', month='01')
+resp = cliente.er_cuenta_instituciones(year='2021', month='01', codigo_cuenta='4100000') # INGRESOS POR INTERESES Y REAJUSTES
 
 # Fichas Bancarias
 resp = cliente.fb_perfil_institucion(year='2022', month='10', instituciones='001')
