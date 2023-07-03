@@ -146,6 +146,9 @@ class ReportesBancariosChilenos(RequestHandler):
     # ----------------------------------------
     
     def er_institucion(self, **query_params):
+        """
+        Estado de Resultados de una institución para el año especificado
+        """
         codigo = 'CodigosEstadosDeResultado'
         self.__endpoint_builder(
             self.ROOT_ESTADO_RESULTADOS, 
@@ -154,6 +157,11 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def er_lista_cuentas(self, **query_params):
+        """
+        Lista de cuentas existentes en el Estado de Resultados durante el mes 
+        del año especificado
+
+        """
         codigo = 'DescripcionesCodigosContables'
         self.__endpoint_builder(
             self.ROOT_ESTADO_RESULTADOS, 
@@ -162,6 +170,10 @@ class ReportesBancariosChilenos(RequestHandler):
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def er_cuenta_instituciones(self, **query_params):
+        """
+        Detalle de una cuenta del Estado de Resultados durante el mes del año 
+        especificado para todas las instituciones
+        """
         codigo = 'CodigosEstadosDeResultado'
         self.__endpoint_builder(
             self.ROOT_ESTADO_RESULTADOS, 
