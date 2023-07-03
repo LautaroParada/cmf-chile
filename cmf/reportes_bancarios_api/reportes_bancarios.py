@@ -10,6 +10,13 @@ from datetime import datetime, timedelta
 
 class ReportesBancariosChilenos(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
+        """
+        Clase para interactuar con la API de Reportes Bancarios Chilenos.
+        
+        Args:
+            api_key (str): Clave de API para acceder a los servicios.
+            timeout (int): Tiempo máximo de espera para las solicitudes en segundos.
+        """
         super().__init__(api_key, timeout)
         # URL raices de cada endpoint
         self.URL_CALL = None # ruta final para solicitar datos a la API
@@ -24,6 +31,13 @@ class ReportesBancariosChilenos(RequestHandler):
     # ----------------------------------------
     
     def __endpoint_builder(self, root:str, endpoint:str):
+        """
+        Construye la URL final para la solicitud a la API.
+        
+        Args:
+            root (str): URL raíz del endpoint.
+            endpoint (str): Ruta específica del endpoint.
+        """
         self.URL_CALL = f"{root}{endpoint}"
 
     def __obtener_mes_y_anio_hace_tres_meses(self):
@@ -52,6 +66,15 @@ class ReportesBancariosChilenos(RequestHandler):
     # ----------------------------------------
     
     def instituciones_bancarias(self, **query_params):
+        """
+        Obtener el listado completo de instituciones bancarias de hace tres meses atrás.
+        
+        Args:
+            query_params: Parámetros adicionales de consulta (opcional).
+        
+        Returns:
+            dict: Los datos de las instituciones bancarias.
+        """
         mes_ref, anio_ref = self.__obtener_mes_y_anio_hace_tres_meses()
         
         codigo = 'DescripcionesCodigosDeInstituciones'
@@ -60,6 +83,7 @@ class ReportesBancariosChilenos(RequestHandler):
             f"/{anio_ref}/{mes_ref}/instituciones"
             )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+
     
     # ----------------------------------------
     # Adecuacion de Capital
