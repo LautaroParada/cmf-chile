@@ -88,62 +88,92 @@ class ReportesBancariosChilenos(RequestHandler):
     # ----------------------------------------
     # Adecuacion de Capital
     # ----------------------------------------
-    
+        
     def ac_capital_basico(self, **query_params):
         """
-        Capital básico para múltiples períodos
+        Obtiene el capital básico para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+    
+        Args:
+            query_params: Parámetros adicionales de consulta, incluyendo 'cantidad' y 'instituciones'.
+    
+        Returns:
+            dict: Los datos del capital básico para los períodos y las instituciones especificadas.
         """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/capbas"
-            )
+        )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_patrimonio_efectivo(self, **query_params):
         """
-        Patrimonio Efectivo para múltiples períodos
+        Obtiene el patrimonio efectivo para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+    
+        Args:
+            query_params: Parámetros adicionales de consulta, incluyendo 'cantidad' y 'instituciones'.
+    
+        Returns:
+            dict: Los datos del patrimonio efectivo para los períodos y las instituciones especificadas.
         """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/patefe"
-            )
+        )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_riesgo_credito(self, **query_params):
         """
-        Activos Ponderados por Riesgo de Crédito (IRS) para múltiples períodos
+        Obtiene los activos ponderados por riesgo de crédito (IRS) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+    
+        Args:
+            query_params: Parámetros adicionales de consulta, incluyendo 'cantidad' y 'instituciones'.
+    
+        Returns:
+            dict: Los datos de los activos ponderados por riesgo de crédito para los períodos y las instituciones especificadas.
         """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/irs"
-            )
+        )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_capital_activos(self, **query_params):
         """
-        Capital Básico / Activos Totales (IRE) para múltiples períodos
+        Obtiene el cociente de capital básico / activos totales (IRE) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+    
+        Args:
+            query_params: Parámetros adicionales de consulta, incluyendo 'cantidad' y 'instituciones'.
+    
+        Returns:
+            dict: Los datos del cociente de capital básico / activos totales para los períodos y las instituciones especificadas.
         """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/regresionmensual/{query_params['cantidad']}/instituciones/{query_params['instituciones']}/indicadores/ire"
-            )
+        )
         return super().handle_request(self.URL_CALL, query_params, codigo)
     
     def ac_componentes_todos(self, **query_params):
         """
-        Entrega las cifras de todos los componentes de la Adecuación de 
-        Capital para la institución especificada.
+        Obtiene todas las cifras de los componentes de la Adecuación de Capital para la institución y el período de tiempo especificados.
+    
+        Args:
+            query_params: Parámetros adicionales de consulta, incluyendo 'year', 'month' y 'instituciones'.
+    
+        Returns:
+            dict: Los datos de todos los componentes de la Adecuación de Capital para la institución y el período de tiempo especificados.
         """
         codigo = 'AdecuacionDeCapital'
         self.__endpoint_builder(
             self.ROOT_ADECUACION, 
             f"/anhos/{query_params['year']}/meses/{query_params['month']}/instituciones/{query_params['instituciones']}/componentes"
-            )
+        )
         return super().handle_request(self.URL_CALL, query_params, codigo)
+
     
     # ----------------------------------------
     # Balance Mensual de Bancos
