@@ -9,7 +9,7 @@ import requests
 from typing import Dict
 
 class RequestHandler():
-    def __init__(self, api_key:str, timeout:int):
+    def __init__(self, api_key:str, timeout:int=1000):
         # parametros generales de la api
         self.api_key = api_key
         self.timeout = timeout
