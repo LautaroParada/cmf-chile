@@ -6,7 +6,7 @@
 [![Python Version](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://shields.io/) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/) [![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
 
-Este paquete de Python proporciona una interfaz fácil de usar para la API de la Comisión para el Mercado Financiero de Chile (CMF). Permite recuperar reportes bancarios e indicadores financieros para un análisis más profundo.
+Este paquete de Python proporciona una interfaz fácil de usar para la [API de la Comisión para el Mercado Financiero de Chile](https://api.cmfchile.cl/documentacion/UTM.html) (CMF). Permite recuperar reportes bancarios e indicadores financieros para un análisis más profundo.
 
 ## Requisitos mínimos
 
@@ -44,11 +44,15 @@ cmf_client = CmfBancos(api_key)
 
 # Ahora puedes utilizar todos los métodos descritos anteriormente
 dolares = cmf_client.get_dolares(from_="2023/01/01", to_="2023/07/01")
-balance = cmf_client.get_balance_situacion("001", "2023/01/01", "2023/07/01")
+balance = cmf_client.ac_riesgo_credito(cantidad="12", instituciones="001")
 
 print(dolares)
 print(balance)
 ```
+
+Es altamente recomendable guardar tus claves o API kets en tus variables de entorno. Un tutorial corto sobre como hacerlo, lo puedes encontrar en el siguiente [video](https://www.youtube.com/watch?v=IolxqkL7cD8):
+
+[![Demo enviroment variables](https://j.gifs.com/LZlj1D.gif)](https://www.youtube.com/watch?v=IolxqkL7cD8)
 
 ## Documentación de los métodos
 
