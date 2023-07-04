@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
 class IndicadoresFinancierosChilenos(RequestHandler):
-    def __init__(self, api_key:str, timeout:str):
+    def __init__(self, api_key:str, timeout:int):
         super().__init__(api_key, timeout)
         
     # ----------------------------------------
