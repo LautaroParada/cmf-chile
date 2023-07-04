@@ -56,7 +56,7 @@ Es altamente recomendable guardar tus claves o API kets en tus variables de ento
 
 ## Documentación de los métodos
 
-### Métodos de la clase `IndicadoresFinancierosChilenos`
+### Indicadores Financieros Chilenos
 
 Por defecto, si no se proporciona una fecha de inicio (`from_`), se establecerá en un año antes de la fecha de fin (`to_`). Si no se proporciona una fecha de fin, se establecerá en la fecha actual. Si no se proporcionan ambas fechas, la fecha de inicio será un año antes de la fecha actual y la fecha de fin será la fecha actual. Todos los métodos aceptan el formato "YYYY/MM/DD" si se desean datos diarios. Si se desean datos mensuales se debe ingresar el formato "YYYY/MM".
 
@@ -155,86 +155,187 @@ Los siguientes son los métodos disponibles en la clase `IndicadoresFinancierosC
   print(utm)
   ```
 
-### Métodos de la clase `ReportesBancariosChilenos`
+### Reportes Bancarios Chilenos
 
-Los siguientes son los métodos disponibles en la clase `ReportesBancariosChilenos`:
+- `instituciones_bancarias()`: 
 
-- `instituciones_bancarias()`: No recibe ningún parámetro de entrada. Obtiene el listado completo de instituciones bancarias disponibles en Chile de hace tres meses atrás. Para proximas versiones del paquete se espera incluir la funcionalidad de "viaje en el tiempo", es decir, mostrar las instituciones bancarias chilenas para un periodo especifico en el tiempo (e.g. Mayo de 2013)
+    No recibe ningún parámetro de entrada. Obtiene el listado completo de instituciones bancarias disponibles en Chile de hace tres meses atrás. 
 
-  Ejemplo de uso:
+    Para proximas versiones del paquete se espera incluir la funcionalidad de "viaje en el tiempo", es decir, mostrar las instituciones bancarias chilenas para un periodo especifico en el tiempo (e.g. Mayo de 2013)
 
-  ```python
-  instituciones = cmf_client.instituciones_bancarias()
-  print(instituciones)
-  ```
+    Ejemplo de uso:
+
+    ```python
+    instituciones = cmf_client.instituciones_bancarias()
+    print(instituciones)
+    ```
 
 - `ac_capital_basico(cantidad:str, instituciones:str)`: 
-  - **cantidad** (str): Períodos de tiempo requeridos para obtener los datos. 
-  - **instituciones** (str): El código de las instituciones bancarias especificadas.
-  
-  Obtiene el capital básico para múltiples períodos de tiempo de las instituciones bancarias especificadas.
-  
-  Ejemplo de uso:
-  
-  ```python
-  capital_basico = cmf_client.ac_capital_basico(cantidad="12", instituciones="001")
-  print(capital_basico)
-  ```
-  
+
+    Obtiene el capital básico para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+
+    Ejemplo de uso:
+
+    ```python
+    capital_basico = cmf_client.ac_capital_basico(cantidad="12", instituciones="001")
+    print(capital_basico)
+    ```
+
 - `ac_patrimonio_efectivo(cantidad:str, instituciones:str)`: 
-  - **cantidad** (str): Períodos de tiempo requeridos para obtener los datos. 
-  - **instituciones** (str): El código de las instituciones bancarias especificadas.
-  
-  Obtiene el patrimonio efectivo para múltiples períodos de tiempo de las instituciones bancarias especificadas.
-  
-  Ejemplo de uso:
-  
-  ```python
-  patrimonio_efectivo = cmf_client.ac_patrimonio_efectivo(cantidad="12", instituciones="001")
-  print(patrimonio_efectivo)
-  ```
+
+    Obtiene el patrimonio efectivo para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+
+    Ejemplo de uso:
+
+    ```python
+    patrimonio_efectivo = cmf_client.ac_patrimonio_efectivo(cantidad="12", instituciones="001")
+    print(patrimonio_efectivo)
+    ```
 
 - `ac_riesgo_credito(cantidad:str, instituciones:str)`: 
-  - **cantidad** (str): Períodos de tiempo requeridos para obtener los datos. 
-  - **instituciones** (str): El código de las instituciones bancarias especificadas.
-  
-  Obtiene los activos ponderados por riesgo de crédito (IRS) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
-  
-  Ejemplo de uso:
-  
-  ```python
-  riesgo_credito = cmf_client.ac_riesgo_credito(cantidad="12", instituciones="001")
-  print(riesgo_credito)
-  ```
+
+    Obtiene los activos ponderados por riesgo de crédito (IRS) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+
+    Ejemplo de uso:
+
+    ```python
+    riesgo_credito = cmf_client.ac_riesgo_credito(cantidad="12", instituciones="001")
+    print(riesgo_credito)
+    ```
 
 - `ac_capital_activos(cantidad:str, instituciones:str)`: 
-  - **cantidad** (str): Períodos de tiempo requeridos para obtener los datos. 
-  - **instituciones** (str): El código de las instituciones bancarias especificadas.
-  
-  Obtiene el cociente de capital básico / activos totales (IRE) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
-  
-  Ejemplo de uso:
-  
-  ```python
-  capital_activos = cmf_client.ac_capital_activos(cantidad="12", instituciones="001")
-  print(capital_activos)
-  ```
+
+    Obtiene el cociente de capital básico / activos totales (IRE) para múltiples períodos de tiempo de las instituciones bancarias especificadas.
+
+    Ejemplo de uso:
+
+    ```python
+    capital_activos = cmf_client.ac_capital_activos(cantidad="12", instituciones="001")
+    print(capital_activos)
+    ```
 
 - `ac_componentes_todos(year:str, month:str, instituciones:str)`: 
-  - **year** (str): Año para obtener los datos. 
-  - **month** (str): Mes para obtener los datos. 
-  - **instituciones** (str): El código de las instituciones bancarias especificadas.
-  
-  Obtiene todas las cifras de los componentes de la Adecuación de Capital para la institución y el
 
- año y mes especificados.
-  
-  Ejemplo de uso:
-  
-  ```python
-  componentes_todos = cmf_client.ac_componentes_todos(year="2023", month="07", instituciones="001")
-  print(componentes_todos)
-  ```
+    Obtiene todas las cifras de los componentes de la Adecuación de Capital para la institución y el período de tiempo especificados.
+
+    Ejemplo de uso:
+
+    ```python
+    componentes_todos = cmf_client.ac_componentes_todos(year='2020', month='09', instituciones="001")
+    print(componentes_todos)
+    ```
+
+- `bs_institucion(year:int, instituciones:str)`: 
+
+    Obtiene el balance de una institución con resultados para todos los meses del año especificado.
+
+    Ejemplo de uso:
+
+    ```python
+    balance_institucion = cmf_client.bs_institucion(year=2022, instituciones="001")
+    print(balance_institucion)
+    ```
+
+- `bs_lista_cuentas(year:int, month:int)`: 
+
+    Obtiene la lista de cuentas existentes en el balance durante el mes y el año especificado.
+
+    Ejemplo de uso:
+
+    ```python
+    lista_cuentas = cmf_client.bs_lista_cuentas(year=2022, month=9)
+    print(lista_cuentas)
+    ```
+
+- `bs_cuentas_instituciones(year:int, codigo_cuenta:str)`: 
+
+    Obtiene el detalle de una cuenta del balance durante el año especificado para todas las instituciones.
+
+    Ejemplo de uso:
+
+    ```python
+
+
+    cuenta_instituciones = cmf_client.bs_cuentas_instituciones(year=2022, codigo_cuenta="ACT01")
+    print(cuenta_instituciones)
+    ```
+
+- `bs_historico_cuenta_institucion(periodo:int, month:int, codigo_cuenta:str, instituciones:str)`: 
+
+    Obtiene el detalle de una cuenta del balance durante el mes especificado y un periodo predeterminado de años para las instituciones especificadas.
+
+    Ejemplo de uso:
+
+    ```python
+    historico_cuenta = cmf_client.bs_historico_cuenta_institucion(periodo=5, month=9, codigo_cuenta="ACT01", instituciones="001")
+    print(historico_cuenta)
+    ```
+
+- `er_institucion(year:int, instituciones:str)`: 
+
+    Obtiene el estado de resultados de una institución para el año especificado.
+
+    Ejemplo de uso:
+
+    ```python
+    estado_resultados = cmf_client.er_institucion(year=2022, instituciones="001")
+    print(estado_resultados)
+    ```
+
+- `er_lista_cuentas(year:int, month:int)`: 
+
+    Obtiene la lista de cuentas existentes en el estado de resultados durante el mes y el año especificado.
+
+    Ejemplo de uso:
+
+    ```python
+    lista_cuentas_er = cmf_client.er_lista_cuentas(year=2022, month=9)
+    print(lista_cuentas_er)
+    ```
+
+- `er_cuenta_instituciones(year:int, month:int, codigo_cuenta:str)`: 
+
+    Obtiene el detalle de una cuenta del estado de resultados durante el mes y el año especificado para todas las instituciones.
+
+    Ejemplo de uso:
+
+    ```python
+    cuenta_instituciones_er = cmf_client.er_cuenta_instituciones(year=2022, month=9, codigo_cuenta="ACT01")
+    print(cuenta_instituciones_er)
+    ```
+
+- `fb_perfil_institucion(instituciones:str, year:int, month:int)`: 
+
+    Obtiene el perfil de una institución financiera para el año y mes especificados.
+
+    Ejemplo de uso:
+
+    ```python
+    perfil_institucion = cmf_client.fb_perfil_institucion(instituciones="001", year=2022, month=9)
+    print(perfil_institucion)
+    ```
+
+- `fb_accionistas_institucion(instituciones:str, year:int, month:int)`: 
+
+    Obtiene los accionistas de una institución financiera para el año y mes especificados.
+
+    Ejemplo de uso:
+
+    ```python
+    accionistas_institucion = cmf_client.fb_accionistas_institucion(instituciones="001", year=2022, month=9)
+    print(accionistas_institucion)
+    ```
+
+- `fb_ejecutivos_institucion(instituciones:str, year:int, month:int)`: 
+
+    Obtiene los ejecutivos principales de una institución financiera para el año y mes especificados.
+
+    Ejemplo de uso:
+
+    ```python
+    ejecutivos_institucion = cmf_client.fb_ejecutivos_institucion(instituciones="001", year=2022, month=9)
+    print(ejecutivos_institucion)
+    ```
 
 ## Disclaimer
 
