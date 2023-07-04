@@ -8,6 +8,14 @@
 
 Este paquete de Python proporciona una interfaz fácil de usar para la [API de la Comisión para el Mercado Financiero de Chile](https://api.cmfchile.cl/documentacion/UTM.html) (CMF). Permite recuperar reportes bancarios e indicadores financieros para un análisis más profundo.
 
+- [Requisitos mínimos](#requisitos-mínimos)
+- [Instalación](#instalación)
+- [Uso básico](#uso-básico)
+- [Documentación de los metodos](#documentación-de-los-métodos)
+  - [Indicadores Financieros Chilenos](#indicadores-financieros-chilenos)
+  - [Reportes Bancarios Chilenos](#reportes-bancarios-chilenos)
+- [Disclaimer](#disclaimer)
+
 ## Requisitos mínimos
 
 - Python 3.8+
