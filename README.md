@@ -225,29 +225,29 @@ Los siguientes son los métodos disponibles en la clase `IndicadoresFinancierosC
     print(componentes_todos)
     ```
 
-- `bs_institucion(year:int, instituciones:str)`: 
+- `bs_institucion(year:str, instituciones:str)`: 
 
     Obtiene el balance de una institución con resultados para todos los meses del año especificado.
 
     Ejemplo de uso:
 
     ```python
-    balance_institucion = cmf_client.bs_institucion(year=2022, instituciones="001")
+    balance_institucion = cmf_client.bs_institucion(year="2022", instituciones="001")
     print(balance_institucion)
     ```
 
-- `bs_lista_cuentas(year:int, month:int)`: 
+- `bs_lista_cuentas(year:str, month:str)`: 
 
     Obtiene la lista de cuentas existentes en el balance durante el mes y el año especificado.
 
     Ejemplo de uso:
 
     ```python
-    lista_cuentas = cmf_client.bs_lista_cuentas(year=2022, month=9)
+    lista_cuentas = cmf_client.bs_lista_cuentas(year="2022", month="09")
     print(lista_cuentas)
     ```
 
-- `bs_cuentas_instituciones(year:int, codigo_cuenta:str)`: 
+- `bs_cuentas_instituciones(year:str, codigo_cuenta:str)`: 
 
     Obtiene el detalle de una cuenta del balance durante el año especificado para todas las instituciones.
 
@@ -255,85 +255,91 @@ Los siguientes son los métodos disponibles en la clase `IndicadoresFinancierosC
 
     ```python
 
-
-    cuenta_instituciones = cmf_client.bs_cuentas_instituciones(year=2022, codigo_cuenta="ACT01")
+    # Detalle de la cuenta de Cuentas por cobrar a filiales del banco por servicios prestados (aplica solo a nivel individual del banco).
+    cuenta_instituciones = cmf_client.bs_cuentas_instituciones(year="2022", codigo_cuenta="190000600")
     print(cuenta_instituciones)
     ```
 
-- `bs_historico_cuenta_institucion(periodo:int, month:int, codigo_cuenta:str, instituciones:str)`: 
+- `bs_historico_cuenta_institucion(periodo:str, month:str, codigo_cuenta:str, instituciones:str)`: 
 
-    Obtiene el detalle de una cuenta del balance durante el mes especificado y un periodo predeterminado de años para las instituciones especificadas.
+    Obtiene el detalle de una cuenta del balance durante el mes especificado y un periodo predeterminado de años para las instituciones especificadas. El parametro ´´´periodo´´´ puede tener los siguientes valores: "periodo1" (Años 1995-2007), "periodo2" (2008) y "periodo3" (2009-hoy).
 
     Ejemplo de uso:
 
     ```python
-    historico_cuenta = cmf_client.bs_historico_cuenta_institucion(periodo=5, month=9, codigo_cuenta="ACT01", instituciones="001")
+    historico_cuenta = cmf_client.bs_historico_cuenta_institucion(
+                                                                  periodo='periodo3', 
+                                                                  month='06',
+                                                                  codigo_cuenta='246000304',
+                                                                  instituciones='001'
+                                                                  )
     print(historico_cuenta)
     ```
 
-- `er_institucion(year:int, instituciones:str)`: 
+- `er_institucion(year:str, instituciones:str)`: 
 
-    Obtiene el estado de resultados de una institución para el año especificado.
+    Obtiene el estado de resultados de una institución para el año especificado. Para este metodo es recomendable cambiar el parametro ´´´timeout´´´ a un numero grande (e.g. 10000). Lo anterior se debe a que la respuesta enviada desde la API es muy grande y toma bastante tiempo. Eventualmente la misma API de la CMF puede tener un timeout que aborte la couminicación de la solicitud. **Se recomienda buscar la cuentas de mayor impacto y solicitarlas de manera individual por banco.**
 
     Ejemplo de uso:
 
     ```python
-    estado_resultados = cmf_client.er_institucion(year=2022, instituciones="001")
+    estado_resultados = cmf_client.er_institucion(year="2022", instituciones="001")
     print(estado_resultados)
     ```
 
-- `er_lista_cuentas(year:int, month:int)`: 
+- `er_lista_cuentas(year:str, month:str)`: 
 
-    Obtiene la lista de cuentas existentes en el estado de resultados durante el mes y el año especificado.
+    Obtiene la lista de cuentas existentes en el estado de resultados durante el mes y el año especificado. **Considerar que todos los reportes tienen un desface de 3 o 4 meses (trimestre) respecto a la fecha actual.**
 
     Ejemplo de uso:
 
     ```python
-    lista_cuentas_er = cmf_client.er_lista_cuentas(year=2022, month=9)
+    lista_cuentas_er = cmf_client.er_lista_cuentas(year="2023", month="01")
     print(lista_cuentas_er)
     ```
 
-- `er_cuenta_instituciones(year:int, month:int, codigo_cuenta:str)`: 
+- `er_cuenta_instituciones(year:str, month:str, codigo_cuenta:str)`: 
 
     Obtiene el detalle de una cuenta del estado de resultados durante el mes y el año especificado para todas las instituciones.
 
     Ejemplo de uso:
 
     ```python
-    cuenta_instituciones_er = cmf_client.er_cuenta_instituciones(year=2022, month=9, codigo_cuenta="ACT01")
+    # Solicitar los datos para las Comisiones por asesorías financieras durante Enero de 2023
+    cuenta_instituciones_er = cmf_client.er_cuenta_instituciones(year="2022", month="09", codigo_cuenta="416280224")
     print(cuenta_instituciones_er)
     ```
 
-- `fb_perfil_institucion(instituciones:str, year:int, month:int)`: 
+- `fb_perfil_institucion(instituciones:str, year:str, month:str)`: 
 
     Obtiene el perfil de una institución financiera para el año y mes especificados.
 
     Ejemplo de uso:
 
     ```python
-    perfil_institucion = cmf_client.fb_perfil_institucion(instituciones="001", year=2022, month=9)
+    perfil_institucion = cmf_client.fb_perfil_institucion(instituciones="001", year="2022", month="09")
     print(perfil_institucion)
     ```
 
-- `fb_accionistas_institucion(instituciones:str, year:int, month:int)`: 
+- `fb_accionistas_institucion(instituciones:str, year:str, month:str)`: 
 
     Obtiene los accionistas de una institución financiera para el año y mes especificados.
 
     Ejemplo de uso:
 
     ```python
-    accionistas_institucion = cmf_client.fb_accionistas_institucion(instituciones="001", year=2022, month=9)
+    accionistas_institucion = cmf_client.fb_accionistas_institucion(instituciones="001", year="2022", month="09")
     print(accionistas_institucion)
     ```
 
-- `fb_ejecutivos_institucion(instituciones:str, year:int, month:int)`: 
+- `fb_ejecutivos_institucion(instituciones:str, year:str, month:str)`: 
 
     Obtiene los ejecutivos principales de una institución financiera para el año y mes especificados.
 
     Ejemplo de uso:
 
     ```python
-    ejecutivos_institucion = cmf_client.fb_ejecutivos_institucion(instituciones="001", year=2022, month=9)
+    ejecutivos_institucion = cmf_client.fb_ejecutivos_institucion(instituciones="001", year="2022", month="09")
     print(ejecutivos_institucion)
     ```
 
