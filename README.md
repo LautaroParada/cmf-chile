@@ -22,12 +22,14 @@ Este paquete de Python proporciona una interfaz fácil de usar para la [API de l
 - requests
 - dateutil
 
-## Instalación
+## Instalación (TBD)
+
+*De momento estoy recuperando mi acceso a mi cuenta de Pypi, por ende, no se puede instalar directo. A pesar de eso, se puede ocupar de manera local redireccionando la carpeta a donde se guardo el fichero*
 
 El paquete se puede instalar fácilmente utilizando `pip`. Solo necesitas ejecutar el siguiente comando:
 
 ```bash
-pip install cmf
+
 ```
 
 ## Uso básico
